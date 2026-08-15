@@ -1,0 +1,8 @@
+# Compiled C++ executable
+Backend/backend
+
+# macOS files
+.DS_Store
+
+# VS Code settings
+.vscode/
