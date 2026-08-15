@@ -1,19 +1,25 @@
 #ifndef MARKS_H
 #define MARKS_H
 
-#include <vector>
+#include <string>
+using namespace std;
 
 class Marks {
 private:
-    std::vector<float> subjectMarks;
+    string mark_id;
+    string student_id;
+    string subject_id;
+    float marks_obtained;
 
 public:
-    Marks(std::vector<float> marks);
+    Marks(
+        string mark_id,
+        string student_id,
+        string subject_id,
+        float marks_obtained
+    );
 
-    float calculateTotal();
-    float calculatePercentage();
     char calculateGrade();
-
     void displayMarks();
 };
 

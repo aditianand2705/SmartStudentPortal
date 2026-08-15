@@ -6,11 +6,22 @@ using namespace std;
 
 class Student {
 private:
-    string usn;
-    string name;
+    string student_id;
+    string student_name;
+    string email;
+    string department;
+    int semester;
+    string phone;
 
 public:
-    Student(string u, string n);
+    Student(
+        string id,
+        string name,
+        string email,
+        string department,
+        int semester,
+        string phone
+    );
 
     void display();
 };

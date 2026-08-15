@@ -7,15 +7,22 @@
 using namespace std;
 
 struct StudentRecord {
-    string usn;
-    string name;
+    string student_id;
+    string student_name;
     float percentage;
 };
 
-void searchStudent(const vector<StudentRecord>& students, string usn);
+void searchStudent(
+    const vector<StudentRecord>& students,
+    string student_id
+);
 
-void sortStudentsByPercentage(vector<StudentRecord>& students);
+void sortStudentsByPercentage(
+    vector<StudentRecord>& students
+);
 
-void displayStudents(const vector<StudentRecord>& students);
+void displayStudents(
+    const vector<StudentRecord>& students
+);
 
 #endif

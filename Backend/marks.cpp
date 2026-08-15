@@ -4,57 +4,39 @@
 
 using namespace std;
 
-Marks::Marks(vector<float> marks) {
-
-    if (marks.empty()) {
-        throw invalid_argument("Marks list cannot be empty.");
+Marks::Marks(
+    string mark_id,
+    string student_id,
+    string subject_id,
+    float marks_obtained
+) {
+    if (marks_obtained < 0 || marks_obtained > 100) {
+        throw invalid_argument(
+            "Marks obtained must be between 0 and 100."
+        );
     }
 
-    for (float mark : marks) {
-
-        if (mark < 0 || mark > 100) {
-            throw invalid_argument("Each mark must be between 0 and 100.");
-        }
-
-        subjectMarks.push_back(mark);
-    }
-}
-
-float Marks::calculateTotal() {
-
-    float total = 0;
-
-    for (float mark : subjectMarks) {
-        total += mark;
-    }
-
-    return total;
-}
-
-float Marks::calculatePercentage() {
-
-    float total = calculateTotal();
-
-    return total / subjectMarks.size();
+    this->mark_id = mark_id;
+    this->student_id = student_id;
+    this->subject_id = subject_id;
+    this->marks_obtained = marks_obtained;
 }
 
 char Marks::calculateGrade() {
 
-    float percentage = calculatePercentage();
-
-    if (percentage >= 90) {
+    if (marks_obtained >= 90) {
         return 'A';
     }
-    else if (percentage >= 80) {
+    else if (marks_obtained >= 80) {
         return 'B';
     }
-    else if (percentage >= 70) {
+    else if (marks_obtained >= 70) {
         return 'C';
     }
-    else if (percentage >= 60) {
+    else if (marks_obtained >= 60) {
         return 'D';
     }
-    else if (percentage >= 50) {
+    else if (marks_obtained >= 50) {
         return 'E';
     }
     else {
@@ -64,24 +46,9 @@ char Marks::calculateGrade() {
 
 void Marks::displayMarks() {
 
-    cout << "Marks: ";
-
-    for (float mark : subjectMarks) {
-        cout << mark << " ";
-    }
-
-    cout << endl;
-
-    cout << "Total Marks: "
-         << calculateTotal()
-         << endl;
-
-    cout << "Percentage: "
-         << calculatePercentage()
-         << "%"
-         << endl;
-
-    cout << "Grade: "
-         << calculateGrade()
-         << endl;
+    cout << "Mark ID: " << mark_id << endl;
+    cout << "Student ID: " << student_id << endl;
+    cout << "Subject ID: " << subject_id << endl;
+    cout << "Marks Obtained: " << marks_obtained << endl;
+    cout << "Grade: " << calculateGrade() << endl;
 }

@@ -13,6 +13,7 @@ using namespace std;
 
 int main() {
 
+    // Sample student data for search and sorting
     vector<StudentRecord> students = {
         {"1BG25IS006", "Aditi", 85.75},
         {"1BG25IS007", "Rahul", 72.40},
@@ -26,7 +27,7 @@ int main() {
 
         cout << endl;
         cout << "========================================" << endl;
-        cout << "       SMART STUDENT PORTAL" << endl;
+        cout << "       SMART STUDENT MANAGEMENT" << endl;
         cout << "========================================" << endl;
 
         cout << "1. Student Details" << endl;
@@ -37,14 +38,24 @@ int main() {
         cout << "6. Exit" << endl;
 
         cout << "----------------------------------------" << endl;
-        cout << "Enter your choice: ";
+
         choice = getIntegerInput("Enter your choice: ");
 
         switch (choice) {
 
+            // ========================================
+            // STUDENT DETAILS
+            // ========================================
             case 1: {
 
-                Student student1("1BG25IS006", "Aditi");
+                Student student1(
+                    "1BG25IS006",
+                    "Aditi",
+                    "aditi@example.com",
+                    "ISE",
+                    2,
+                    "9876543210"
+                );
 
                 cout << endl;
                 cout << "Student Details" << endl;
@@ -55,71 +66,82 @@ int main() {
                 break;
             }
 
-            case 2: {
+            // ========================================
+            // ATTENDANCE
+            // ========================================
+           case 2: {
 
-                int totalClasses;
-                int attendedClasses;
+    string attendance_id;
+    string student_id;
+    string attendance_date;
+    string status;
 
-                cout << endl;
-                cout << "Attendance Details" << endl;
-                cout << "------------------" << endl;
+    cout << endl;
+    cout << "Attendance Details" << endl;
+    cout << "------------------" << endl;
 
-                totalClasses = getIntegerInput("Enter total classes: ");
+    cout << "Enter Attendance ID: ";
+    cin >> attendance_id;
 
-                attendedClasses = getIntegerInput(
-                "Enter classes attended: "
-                );
+    student_id = getStudentId("Enter Student ID: ");
 
-                try {
+    attendance_date = getDate(
+        "Enter Attendance Date (YYYY-MM-DD): "
+    );
 
-                    Attendance attendance(
-                        totalClasses,
-                        attendedClasses
-                    );
+    status = getAttendanceStatus(
+        "Enter Status (Present/Absent): "
+    );
 
-                    cout << endl;
-                    attendance.displayAttendance();
+    Attendance attendanceRecord(
+        attendance_id,
+        student_id,
+        attendance_date,
+        status
+    );
 
-                }
-                catch (const invalid_argument& e) {
+    cout << endl;
 
-                    cout << "Error: " << e.what() << endl;
+    attendanceRecord.displayAttendance();
 
-                }
+    break;
+}
 
-                break;
-            }
-
+            // ========================================
+            // MARKS
+            // ========================================
             case 3: {
 
-                int numberOfSubjects;
+                string mark_id;
+                string student_id;
+                string subject_id;
+                float marks_obtained;
 
                 cout << endl;
                 cout << "Marks Details" << endl;
                 cout << "-------------" << endl;
 
-                numberOfSubjects = getIntegerInput(
-                "Enter number of subjects: "
+                cout << "Enter Mark ID: ";
+                cin >> mark_id;
+
+                cout << "Enter Student ID: ";
+                cin >> student_id;
+
+                cout << "Enter Subject ID: ";
+                cin >> subject_id;
+
+                marks_obtained = getFloatInput(
+                    "Enter marks obtained: "
                 );
-
-                vector<float> marks;
-
-                for (int i = 0; i < numberOfSubjects; i++) {
-
-                    float mark;
-
-                    mark = getFloatInput(
-                        (std::string("Enter marks for subject ") +
-                         std::to_string(i + 1) +
-                         ": ").c_str()
-                    );
-
-                    marks.push_back(mark);
-                }
 
                 try {
 
-                    Marks studentMarks(marks);
+                    Marks studentMarks(
+                        mark_id,
+                        student_id,
+                        subject_id,
+                        marks_obtained
+                    );
 
                     cout << endl;
                     studentMarks.displayMarks();
@@ -134,22 +156,28 @@ int main() {
                 break;
             }
 
+            // ========================================
+            // SEARCH STUDENT
+            // ========================================
             case 4: {
 
-                string usn;
+                string student_id;
 
                 cout << endl;
                 cout << "Search Student" << endl;
                 cout << "--------------" << endl;
 
-                cout << "Enter USN: ";
-                cin >> usn;
+                cout << "Enter Student ID: ";
+                cin >> student_id;
 
-                searchStudent(students, usn);
+                searchStudent(students, student_id);
 
                 break;
             }
 
+            // ========================================
+            // SORT STUDENTS
+            // ========================================
             case 5: {
 
                 cout << endl;
@@ -169,10 +197,13 @@ int main() {
                 break;
             }
 
+            // ========================================
+            // EXIT
+            // ========================================
             case 6:
 
                 cout << endl;
-                cout << "Thank you for using Smart Student Portal!" << endl;
+                cout << "Thank you for using Smart Student Management!" << endl;
 
                 break;
 

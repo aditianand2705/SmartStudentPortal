@@ -4,18 +4,26 @@
 
 using namespace std;
 
-void searchStudent(const vector<StudentRecord>& students, string usn) {
+void searchStudent(
+    const vector<StudentRecord>& students,
+    string student_id
+) {
 
     bool found = false;
 
     for (const StudentRecord& student : students) {
 
-        if (student.usn == usn) {
+        if (student.student_id == student_id) {
 
             cout << "Student Found!" << endl;
-            cout << "USN: " << student.usn << endl;
-            cout << "Name: " << student.name << endl;
-            cout << "Percentage: " << student.percentage << "%" << endl;
+            cout << "Student ID: "
+                 << student.student_id << endl;
+
+            cout << "Student Name: "
+                 << student.student_name << endl;
+
+            cout << "Percentage: "
+                 << student.percentage << "%" << endl;
 
             found = true;
             break;
@@ -27,21 +35,30 @@ void searchStudent(const vector<StudentRecord>& students, string usn) {
     }
 }
 
-void sortStudentsByPercentage(vector<StudentRecord>& students) {
+void sortStudentsByPercentage(
+    vector<StudentRecord>& students
+) {
 
-    sort(students.begin(), students.end(),
-        [](const StudentRecord& a, const StudentRecord& b) {
+    sort(
+        students.begin(),
+        students.end(),
+        [](const StudentRecord& a,
+           const StudentRecord& b) {
+
             return a.percentage > b.percentage;
         }
     );
 }
 
-void displayStudents(const vector<StudentRecord>& students) {
+void displayStudents(
+    const vector<StudentRecord>& students
+) {
 
     for (const StudentRecord& student : students) {
 
-        cout << student.usn << "  "
-             << student.name << "  "
-             << student.percentage << "%" << endl;
+        cout << student.student_id << "  "
+             << student.student_name << "  "
+             << student.percentage << "%"
+             << endl;
     }
 }

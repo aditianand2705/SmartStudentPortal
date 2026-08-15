@@ -1,30 +1,25 @@
 #include <iostream>
-#include <stdexcept>
 #include "attendance.h"
 
 using namespace std;
 
-Attendance::Attendance(int total, int attended) {
-
-    if (total <= 0) {
-        throw invalid_argument("Total classes must be greater than 0.");
-    }
-
-    if (attended < 0 || attended > total) {
-        throw invalid_argument("Attended classes must be between 0 and total classes.");
-    }
-
-    totalClasses = total;
-    attendedClasses = attended;
-}
-
-float Attendance::calculatePercentage() {
-    return (static_cast<float>(attendedClasses) / totalClasses) * 100;
+Attendance::Attendance(
+    string attendance_id,
+    string student_id,
+    string attendance_date,
+    string status
+) {
+    this->attendance_id = attendance_id;
+    this->student_id = student_id;
+    this->attendance_date = attendance_date;
+    this->status = status;
 }
 
 void Attendance::displayAttendance() {
-    cout << "Total Classes: " << totalClasses << endl;
-    cout << "Classes Attended: " << attendedClasses << endl;
-    cout << "Attendance Percentage: "
-         << calculatePercentage() << "%" << endl;
+
+    cout << endl;
+    cout << "Attendance ID: " << attendance_id << endl;
+    cout << "Student ID: " << student_id << endl;
+    cout << "Attendance Date: " << attendance_date << endl;
+    cout << "Status: " << status << endl;
 }
