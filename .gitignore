@@ -1,5 +1,12 @@
-# Compiled C++ executable
+# Compiled C++ executables
 Backend/backend
+Backend/smart_student
+
+# C++ object files
+*.o
+
+# Local student data
+Backend/students.txt
 
 # macOS files
 .DS_Store
