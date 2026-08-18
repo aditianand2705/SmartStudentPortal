@@ -17,10 +17,7 @@ loginForm.addEventListener("submit", function (event) {
     // Temporary frontend testing only
     if (username === "admin" && password === "admin123") {
 
-        errorMessage.style.color = "green";
-        errorMessage.textContent =
-            "Login successful!";
-
+        window.location.href = "index.html";
     } else {
 
         errorMessage.style.color = "red";
